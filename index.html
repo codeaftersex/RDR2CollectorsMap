@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Red Dead Online - Collectors Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+  <meta name="description"
+    content="Red Dead Online Collectors Map. Find all collectibles across the world and sell to Madam Nazar.">
+  <meta name="keywords"
+    content="Red Dead Online, Collectors Map, Collectors Map, Map, Interactive Map, Interactive, jeanropke map, jeanropke">
+
+  <link rel="apple-touch-icon" sizes="60x60" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="manifest" href="./site.webmanifest">
+  <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#000000">
+  <link rel="shortcut icon" href="./favicon.ico">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="msapplication-config" content="./browserconfig.xml">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Preconnects to improve performance -->
+  <link rel="preconnect" href="https://pepegapi.jeanropke.net">
+  <link rel="preconnect" href="https://jeanropke.b-cdn.net">
+  <link rel="preconnect" href="https://s.rsg.sc">
+
+  <!-- Preloads for certain UI elements -->
+  <!-- <link rel="preload" as="image" href="./assets/images/action_indicator_clear.png">
+  <link rel="preload" as="image" href="./assets/images/action_indicator_copy.png">
+  <link rel="preload" as="image" href="./assets/images/action_indicator_external.png">
+  <link rel="preload" as="image" href="./assets/images/action_indicator.png">
+  <link rel="preload" as="image" href="./assets/images/arrow.png">
+  <link rel="preload" as="image" href="./assets/images/fme_background.png">
+  <link rel="preload" as="image" href="./assets/images/header_bg_center.png">
+  <link rel="preload" as="image" href="./assets/images/header_border_divider.png">
+  <link rel="preload" as="image" href="./assets/images/header_border_white.png">
+  <link rel="preload" as="image" href="./assets/images/help_text_bg.png">
+  <link rel="preload" as="image" href="./assets/images/menu_donate.png">
+  <link rel="preload" as="image" href="./assets/images/modal_bg.png">
+  <link rel="preload" as="image" href="./assets/images/bgTooltip.png">
+  <link rel="preload" as="image" href="./assets/images/moon.png">
+  <link rel="preload" as="image" href="./assets/images/selection_boxes.png">
+  <link rel="preload" as="image" href="./assets/images/sun.png">
+  <link rel="preload" as="image" href="./assets/images/timer_bg.png">
+  <link rel="preload" as="image" href="./assets/images/pager.png">
+  <link rel="preload" as="image" href="./assets/images/bullet.png"> -->
+
+  <link rel="stylesheet" href="assets/css/leaflet.css" />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/nano.min.css"/>
+  <link rel="stylesheet" href="assets/css/fancyselect.min.css"/>
+  <link rel="stylesheet" href="assets/css/styles.css?nocache=1595" />
+  <link rel="stylesheet" href="assets/css/tippy.css?nocache=1595" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8337816533364971" data-overlays="bottom" crossorigin="anonymous"></script>
+
+  <script>
+    const nocache = 1595;
+  </script>
+</head>
+
+<body style="display: none;">
+  <aside class="side-menu">
+    <div id="customization-container">
+      <div class="header">
+        <span class="header-border"></span>
+        <h2 class="header-title" data-text="menu.customization_title">Customization</h2>
+        <span class="header-border"></span>
+      </div>
+      <div class="settings-container">
+        <div class="input-container" data-help="sort_items_alphabetically">
+          <label for="sort-items-alphabetically" data-text="menu.sort_items_alphabetically">Sort items
+            alphabetically</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="sort-items-alphabetically" value="1"
+              id="sort-items-alphabetically" />
+            <label class="input-checkbox-label" for="sort-items-alphabetically"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="marker_color">
+          <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+            <symbol id="icon-palette" viewBox="0 0 512 512" fill="#f0f0f0">
+              <path d="M491.124,328.439c-10.233-17.742-28.904-27.917-51.222-27.917c-23.642,0-44.048-15.853-47.467-36.875 c-2.178-13.394,1.372-26.356,9.997-36.497c8.471-9.96,20.826-15.672,33.898-15.672c24.545,0,44.564-10.327,54.924-28.333 c9.795-17.025,9.639-38.337-0.407-55.617C445.136,48.867,360.274,0,269.38,0c-61.683,0-118.886,20.734-165.427,59.962 c-44.305,37.343-74.709,88.804-85.609,144.903c-14.896,76.663,4.627,154.677,53.563,214.037 C120.683,478.067,192.656,512,269.374,512c91.108,0,176.073-49.044,221.739-127.993 C501.016,366.89,501.02,345.598,491.124,328.439z M85.722,256c0-27.618,22.469-50.087,50.087-50.087 c27.618,0,50.087,22.469,50.087,50.087c0,27.618-22.469,50.087-50.087,50.087C108.191,306.087,85.722,283.618,85.722,256z M245.968,396.714c-9.266,16.049-26.139,25.033-43.461,25.033c-8.493,0-17.091-2.158-24.96-6.702 c-11.587-6.689-19.873-17.49-23.337-30.413c-3.463-12.922-1.685-26.42,5.004-38.007c6.689-11.586,17.489-19.873,30.413-23.336 c12.922-3.462,26.42-1.685,38.006,5.004C251.552,342.103,259.776,372.796,245.968,396.714z M227.635,183.706 c-7.717,4.456-16.283,6.732-24.962,6.733c-4.351,0-8.73-0.572-13.045-1.729c-12.922-3.463-23.723-11.75-30.413-23.337 s-8.467-25.085-5.004-38.007c3.463-12.922,11.75-23.723,23.337-30.413c11.587-6.69,25.086-8.467,38.007-5.004 c12.922,3.463,23.723,11.75,30.414,23.337C259.776,139.204,251.552,169.897,227.635,183.706z M292.78,115.286 c6.689-11.586,17.489-19.873,30.413-23.336c12.924-3.462,26.42-1.685,38.006,5.004c23.918,13.808,32.141,44.502,18.334,68.42 c-6.689,11.587-17.49,19.873-30.413,23.337c-4.314,1.156-8.695,1.729-13.045,1.729c-8.68,0-17.244-2.276-24.962-6.733 c-11.586-6.689-19.873-17.49-23.336-30.413C284.313,140.369,286.091,126.871,292.78,115.286z M361.2,415.047 c-7.867,4.542-16.469,6.701-24.959,6.701c-17.325,0-34.194-8.982-43.46-25.033c-6.689-11.587-8.467-25.085-5.004-38.007 c3.463-12.922,11.75-23.723,23.337-30.413c11.587-6.69,25.086-8.468,38.007-5.004c12.922,3.463,23.723,11.75,30.414,23.337 C393.342,370.546,385.117,401.239,361.2,415.047z"></path>
+            </symbol>
+          </svg>
+          <label for="marker-color" data-text="menu.marker_color.header">Marker colors</label>
+          <select class="input-text wide-select-menu" id="marker-color">
+            <option data-text="menu.marker_color.by_cycle">By cycle</option>
+            <option data-text="menu.marker_color.by_category">By category</option>
+            <option disabled>------------</option>
+            <option data-icon="#icon-palette" data-text="menu.marker_color.custom">Custom</option>
+            <option disabled>------------</option>
+            <option data-text="menu.marker_color.auto_orange_darkblue">auto orange/darkblue</option>
+            <option disabled>------------</option>
+            <option data-text="generic.blue">Blue</option>
+            <option data-text="generic.orange">Orange</option>
+            <option data-text="generic.purple">Purple</option>
+            <option data-text="generic.darkpurple">Dark purple</option>
+            <option data-text="generic.darkred">Dark red</option>
+            <option data-text="generic.darkblue">Dark blue</option>
+          </select>
+        </div>
+
+        <div id="open-custom-marker-color-modal" class="input-container clickable" data-help="custom_marker_color_modal">
+          <label data-text="menu.custom_marker_color">Select custom colors</label>
+          <div class="input-action"></div>
+        </div>
+
+        <hr class="menu-divider">
+        <div class="input-container" data-help="overlay_opacity">
+          <label for="overlay-opacity" data-text="menu.overlay_opacity">Overlay opacity</label>
+          <select class="input-text wide-select-menu" id="overlay-opacity">
+            <option value="0" data-text="menu.overlay_opacity.0">Disabled</option>
+            <option value="0.25" data-text="menu.overlay_opacity.25">25%</option>
+            <option value="0.5" data-text="menu.overlay_opacity.50">50%</option>
+            <option value="0.75" data-text="menu.overlay_opacity.75" selected>75%</option>
+            <option value="1" data-text="menu.overlay_opacity.100" selected>Opaque</option>
+          </select>
+        </div>
+        <div class="input-container" data-help="marker_size">
+          <label for="marker-size" data-text="menu.marker_size">Marker size</label>
+          <select class="input-text wide-select-menu" id="marker-size">
+            <option value="0.7" data-text="menu.marker_size.70">70%</option>
+            <option value="0.8" data-text="menu.marker_size.80">80%</option>
+            <option value="0.9" data-text="menu.marker_size.90">90%</option>
+            <option value="1" data-text="menu.marker_size.100" selected>100%</option>
+            <option value="1.25" data-text="menu.marker_size.125">125%</option>
+            <option value="1.5" data-text="menu.marker_size.150">150%</option>
+            <option value="1.75" data-text="menu.marker_size.175">175%</option>
+            <option value="2" data-text="menu.marker_size.200">200%</option>
+          </select>
+        </div>
+        <div class="input-container" data-help="marker_opacity">
+          <label for="marker-opacity" data-text="menu.marker_opacity">Marker opacity</label>
+          <select class="input-text wide-select-menu" id="marker-opacity">
+            <option value="0.2" data-text="menu.marker_opacity.20">20%</option>
+            <option value="0.4" data-text="menu.marker_opacity.40">40%</option>
+            <option value="0.6" data-text="menu.marker_opacity.60">60%</option>
+            <option value="0.8" data-text="menu.marker_opacity.80" selected>80%</option>
+            <option value="1" data-text="menu.marker_opacity.100" selected>Opaque</option>
+          </select>
+        </div>
+        <div class="input-container" data-help="invisible-removed-markers">
+          <label for="invisible-removed-markers" data-text="menu.invisible-removed-markers">Completely hide removed markers</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="invisible-removed-markers" value="1" id="invisible-removed-markers" />
+            <label class="input-checkbox-label" for="invisible-removed-markers"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="marker_cluster">
+          <label for="marker-cluster" data-text="menu.marker_cluster">Markers cluster</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="marker-cluster" value="1" id="marker-cluster" />
+            <label class="input-checkbox-label" for="marker-cluster"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="enable_marker_shadows">
+          <label for="enable-marker-shadows" data-text="menu.enable_marker_shadows">Marker shadows enabled</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="enable-marker-shadows" value="1"
+              id="enable-marker-shadows" />
+            <label class="input-checkbox-label" for="enable-marker-shadows"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="enable_marker_popups">
+          <label for="enable-marker-popups" data-text="menu.enable_marker_popups">Marker popups enabled</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="enable-marker-popups" value="1"
+              id="enable-marker-popups" />
+            <label class="input-checkbox-label" for="enable-marker-popups"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="enable_marker_popups_hover">
+          <label for="enable-marker-popups-hover" data-text="menu.enable_marker_popups_hover">Open marker popups on
+            hover</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="enable-marker-popups-hover" value="1"
+              id="enable-marker-popups-hover" />
+            <label class="input-checkbox-label" for="enable-marker-popups-hover"></label>
+          </div>
+        </div>
+        <hr class="menu-divider">
+        <div class="input-container" data-help="enable_legendary_backgrounds">
+          <label for="enable-legendary-backgrounds" data-text="menu.enable_legendary_backgrounds">Legendary Animal backgrounds enabled</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="enable-legendary-backgrounds" value="1"
+              id="enable-legendary-backgrounds" />
+            <label class="input-checkbox-label" for="enable-legendary-backgrounds"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="legendary_marker_type">
+          <label for="legendary-animal-marker-type" data-text="menu.legendary_animal_marker_type">Legendary animals marker type</label>
+          <select class="input-text narrow-select-menu" id="legendary-animal-marker-type">
+            <option value="head" data-text="menu.legendary_icon_type.head" selected>Animal heads</option>
+            <option value="footprint" data-text="menu.legendary_icon_type.paw_prints">Animal paw prints</option>
+          </select>
+        </div>
+        <div class="input-container" data-help="legendary_marker_size">
+          <label for="legendary-animal-marker-size" data-text="menu.legendary_animal_marker_size">Legendary animals marker size</label>
+          <select class="input-text narrow-select-menu" id="legendary-animal-marker-size">
+            <option value="0.7" data-text="menu.marker_size.70">70%</option>
+            <option value="0.8" data-text="menu.marker_size.80">80%</option>
+            <option value="0.9" data-text="menu.marker_size.90">90%</option>
+            <option value="1" data-text="menu.marker_size.100" selected>100%</option>
+            <option value="1.25" data-text="menu.marker_size.125">125%</option>
+            <option value="1.5" data-text="menu.marker_size.150">150%</option>
+            <option value="1.75" data-text="menu.marker_size.175">175%</option>
+            <option value="2" data-text="menu.marker_size.200">200%</option>
+          </select>
+        </div>
+        <hr class="menu-divider">
+        <div class="input-container" data-help="enable_dclick_zoom">
+          <label for="enable-dclick-zoom" data-text="menu.enable_dclick_zoom">Double-click to zoom in</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="enable-dclick-zoom" value="1" id="enable-dclick-zoom" />
+            <label class="input-checkbox-label" for="enable-dclick-zoom"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="show_help">
+          <label for="show-help" data-text="menu.show_help">Show help on hover</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="show-help" value="1" id="show-help" />
+            <label class="input-checkbox-label" for="show-help"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="enable_cycles">
+          <label for="enable-cycles" data-text="menu.enable_cycles">Enable cycles display</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="enable-cycles" value="1" id="enable-cycles" />
+            <label class="input-checkbox-label" for="enable-cycles"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="enable_cycle_input">
+          <label for="enable-cycle-input" data-text="menu.enable_cycle_input">Enable manual cycle input</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="enable-cycle-input" value="1" id="enable-cycle-input" />
+            <label class="input-checkbox-label" for="enable-cycle-input"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="show_coords">
+          <label for="show-coordinates" data-text="menu.show_coords">Show coordinates on click</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="show-coordinates" value="1" id="show-coordinates" />
+            <label class="input-checkbox-label" for="show-coordinates"></label>
+          </div>
+        </div>
+        <div class="input-container" data-help="map_boundaries">
+          <label for="map-boundaries" data-text="menu.map_boundaries">Map boundaries enabled</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="map-boundaries" value="1" id="map-boundaries" />
+            <label class="input-checkbox-label" for="map-boundaries"></label>
+          </div>
+        </div>
+        <hr class="menu-divider">
+        <div class="input-container" data-help="map_zoom_snap">
+          <label for="map-zoom-snap" data-text="menu.map_zoom_snap">Map zoom snap</label>
+          <input id="map-zoom-snap" class="input-text narrow-select-menu" type="number" min="0" max="3" value="1"/>
+        </div>
+        <div class="input-container" data-help="map_zoom_delta">
+          <label for="map-zoom-delta" data-text="menu.map_zoom_delta">Map zoom delta</label>
+          <input id="map-zoom-delta" class="input-text narrow-select-menu" type="number" min="0.1" max="2" value="1"/>
+        </div>
+        <div class="input-container" data-help="map_wheel_debounce_time">
+          <label for="map-wheel-debounce-time" data-text="menu.map_wheel_debounce_time">Map wheel debounce time</label>
+          <input id="map-wheel-debounce-time" class="input-text narrow-select-menu" type="number" min="40" max="200" value="40"/>
+        </div>
+        <div class="input-container" data-help="map_wheel_px_per_zoom_level">
+          <label for="map-wheel-pixel-per-zoom-level" data-text="menu.map_wheel_px_per_zoom_level">Map Wheel pixels per zoom level</label>
+          <input id="map-wheel-pixel-per-zoom-level" class="input-text narrow-select-menu" type="number" min="20" max="150" value="60"/>
+        </div>
+        <div id="reset-map-zoom" class="input-container clickable" data-help="map_reset_zoom_wheel_settings">
+          <label data-text="menu.map_reset_zoom_wheel_settings">Reset zoom and wheel settings</label>
+          <div class="input-action"></div>
+        </div>
+        <hr class="menu-divider">
+        <div class="input-container" data-help="timestamps_24">
+          <label for="timestamps-24" data-text="menu.timestamps_24">Clock in 24-hour format</label>
+          <div class="input-checkbox-wrapper">
+            <input class="input-checkbox" type="checkbox" name="timestamps-24" value="0" id="timestamps-24" />
+            <label class="input-checkbox-label" for="timestamps-24"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+
+
+
+  <main id="map">
+
+  </main>
+
+  <div class="lat-lng-container" data-help="map_coordinates_container">
+    <div>
+      <div><span data-text="map.latitude">Latitude</span>:&nbsp;<span class="lat-lng-value lat-value">-.----</span></div>
+      <div><span data-text="map.longitude">Longitude</span>:&nbsp;<span class="lat-lng-value lng-value">-.----</span></div>
+      <hr>
+      <button type="button" id="lat-lng-container-start" class="btn btn-default" data-text="routes.set_as_route_start">Set as route start</button>
+      <button type="button" id="lat-lng-container-generate" class="btn btn-default" data-text="routes.generate_route_now">Set start and generate route</button>
+    </div>
+    <button type="button" id="lat-lng-container-close-button" class="btn-close" aria-label="Close"></button>
+  </div>
+
+
+  <!-- Service Worker Init -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('Service worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+  <!-- ES6 Compatibility Check -->
+  <script>function isES6() { try { return eval("() => {};"), !0 } catch (r) { return !1 } } isES6() || alert("This browser might not be fully supported, and errors will likely occur. Please update your browser if you experience issues.");</script>
+
+  <script src="https://js.sentry-cdn.com/8bb034d026aa4fb38d3428be80b9f776.min.js" crossorigin="anonymous" data-lazy="no"></script>
+  <script src="assets/js/lib/fuse.min.js"></script>
+  <script src="assets/js/lib/bootstrap.min.js"></script>
+  <script src="assets/js/lib/fancyselect.min.js"></script>
+  <script src="assets/js/loader.js?nocache=1595"></script>
+  <script src="assets/js/lib/popper.min.js"></script>
+  <script src="assets/js/lib/tippy-bundle.umd.min.js"></script>
+  <script src="assets/js/lib/leaflet.js"></script>
+  <script src="assets/js/lib/leaflet-zoomex.js"></script>
+  <script src="assets/js/lib/oms.min.js"></script>
+  <script src="assets/js/lib/rbush.js"></script>
+  <script src="assets/js/lib/pickr.min.js"></script>
+  <script src="assets/js/lib/plain-draggable.min.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>var module = {};</script>
+  <script src="assets/js/lib/leaflet.canvas-markers.js"></script>
+  <script>module.exports(L);</script>
+  <script src="assets/js/layers.js?nocache=1595"></script>
+  <script src="assets/js/settings.js?nocache=1595"></script>
+  <script src="assets/js/mapping.js?nocache=1595"></script>
+  <script src="assets/js/nazar.js?nocache=1595"></script>
+  <script src="assets/js/treasures.js?nocache=1595"></script>
+  <script src="assets/js/legendary.js?nocache=1595"></script>
+  <script src="assets/js/pins.js?nocache=1595"></script>
+  <script src="assets/js/map.js?nocache=1595"></script>
+  <script src="assets/js/language.js?nocache=1595"></script>
+  <script src="assets/js/menu.js?nocache=1595"></script>
+  <script src="assets/js/items.js?nocache=1595"></script>
+  <script src="assets/js/category-collection.js?nocache=1595"></script>
+  <script src="assets/js/routes.js?nocache=1595"></script>
+  <script src="assets/js/pathfinder.main.js?nocache=1595"></script>
+  <script src="assets/js/updates.js?nocache=1595"></script>
+  <script src="assets/js/scripts.js?nocache=1595"></script>
+  <script src="assets/js/players.js?nocache=1595"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39999584-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-39999584-4');
+
+  </script>
+</body>
+
+</html>

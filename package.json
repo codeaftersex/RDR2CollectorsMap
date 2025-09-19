@@ -1,0 +1,7 @@
+{
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^16.5.2",
+    "geojson-path-finder": "^1.5.2"
+  }
+}

@@ -1,0 +1,19 @@
+.DS_Store
+.idea/
+desktop.ini
+node_modules/
+
+# Screenshot stuff.
+_long/
+_short/
+_manifest.json
+
+# Used to make development easier.
+cycles_update/
+fme/
+!assets/images/fme
+rdo/
+
+# Remove map tiles from Github
+assets/maps/jpg
+assets/maps/webp
