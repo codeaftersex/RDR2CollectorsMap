@@ -1,4 +1,7 @@
 const MapBase = {
+  locationPickerEnabled: false,
+  pickerLayer: null,
+  pickerMarker: null,
   minZoom: 2,
   maxZoom: 7,
   map: null,
@@ -60,6 +63,30 @@ const MapBase = {
         attribution: '<a href="https://github.com/AdamNortonUK" target="_blank">AdamNortonUK</a>'
       }),
     };
+
+    // ---- Location picker entegrasyonu ----
+    window.addEventListener('message', (evt) => {
+      const data = evt.data || {};
+      if (data.type === 'map:enableLocationPicker') {
+        MapBase.locationPickerEnabled = true;
+      
+        // Çift tık zoom seçimi engellemesin
+        if (MapBase.map.doubleClickZoom) MapBase.map.doubleClickZoom.disable();
+      
+        // Dblclick handler'ı bir kere bağla (idempotent)
+        MapBase.map.off('dblclick', MapBase.onMapDblClick);
+        MapBase.map.on('dblclick', MapBase.onMapDblClick);
+      }
+      if (data.type === 'map:disableLocationPicker') {
+        MapBase.locationPickerEnabled = false;
+      
+        // İstersen eski ayara döndür (Settings’e göre)
+        MapBase.map.doubleClickZoom[Settings.isDoubleClickZoomEnabled ? 'enable' : 'disable']();
+      
+        MapBase.map.off('dblclick', MapBase.onMapDblClick);
+      }
+    });
+
 
     // Override bindPopup to include mouseover and mouseout logic.
     L.Layer.include({
@@ -750,6 +777,53 @@ const MapBase = {
 
     return { lat, long, name };
   },
+
+  getPickerIcon: function () {
+  // kendi ikon dosyanın yolunu kullan
+  return L.icon({
+    iconUrl: 'https://static.thenounproject.com/png/335079-200.png', // KENDİ dosyan: örn marker_selected.png
+    iconSize: [30, 36],
+    iconAnchor: [15, 34], // ucun yere değmesi için
+    popupAnchor: [0, -30],
+  });
+},
+
+
+onMapDblClick: function (e) {
+  if (!MapBase.locationPickerEnabled) return;
+
+  const lat = e.latlng.lat;
+  const lng = e.latlng.lng;
+
+  if (!MapBase.pickerLayer) MapBase.pickerLayer = L.layerGroup().addTo(MapBase.map);
+  if (!MapBase.pickerMarker) {
+    MapBase.pickerMarker = L.marker([lat, lng], { icon: MapBase.getPickerIcon(), draggable: true })
+      .bindPopup(`<b>Selected</b><br/>Lat: ${lat.toFixed(4)}<br/>Lng: ${lng.toFixed(4)}`);
+    MapBase.pickerLayer.addLayer(MapBase.pickerMarker);
+    MapBase.pickerMarker.on('dragend', (ev) => {
+      const p = ev.target.getLatLng();
+      const gx = (p.lng - 111.29) / 0.01552;
+      const gy = (p.lat + 63.6) / 0.01552;
+      window.parent.postMessage({ type: 'map:locationPicked', lat: p.lat, lng: p.lng, coords: { x: gx, y: gy, z: 0 } }, '*');
+    });
+  } else {
+    MapBase.pickerMarker.setLatLng([lat, lng]);
+    MapBase.pickerMarker.setPopupContent(`<b>Selected</b><br/>Lat: ${lat.toFixed(4)}<br/>Lng: ${lng.toFixed(4)}`);
+  }
+  MapBase.pickerMarker.openPopup();
+
+  // 🔁 map(lat,lng) -> game(x,y)
+  const gameX = (lng - 111.29) / 0.01552;
+  const gameY = (lat + 63.6) / 0.01552;
+
+  window.parent.postMessage(
+    { type: 'map:locationPicked', lat, lng, coords: { x: gameX, y: gameY, z: 0 } },
+    '*'
+  );
+},
+
+
+
 
   addCoordsOnMap: function (coords) {
     // Show clicked coordinates (like google maps)
